@@ -20,8 +20,8 @@ export default async function Home({
       </div>
       <div>
         <p>
-          This demo developed by Junling Zhuang showcases how to use the GPT4o
-          to build semantic search applications. Try searching for something
+          This demo developed by Corgan HUGO showcases how to use the GPT4o to
+          build semantic search applications. Try searching for something
           semantically, like &quot;desk, chair, table&quot;.
         </p>
       </div>

@@ -21,7 +21,10 @@ const imagesWithoutEmbedding = {
 
 export const findSimilarContent = async (description: string) => {
   const embedding = await generateEmbedding(description);
-  const similarity = sql<number>`1 - (${cosineDistance(images.embedding, embedding)})`;
+  const similarity = sql<number>`1 - (${cosineDistance(
+    images.embedding,
+    embedding
+  )})`;
   const similarGuides = await db
     .select({ image: imagesWithoutEmbedding, similarity })
     .from(images)
@@ -39,8 +42,8 @@ export const findImageByQuery = async (query: string) => {
     .where(
       or(
         sql`title ILIKE ${"%" + query + "%"}`,
-        sql`description ILIKE ${"%" + query + "%"}`,
-      ),
+        sql`description ILIKE ${"%" + query + "%"}`
+      )
     );
   return result;
 };
@@ -60,7 +63,7 @@ function uniqueItemsByObject(items: DBImage[]): DBImage[] {
 }
 
 export const getImages = async (
-  query?: string,
+  query?: string
 ): Promise<{ images: DBImage[]; error?: Error }> => {
   try {
     const formattedQuery = query
@@ -75,7 +78,8 @@ export const getImages = async (
         const allImages = await db
           .select(imagesWithoutEmbedding)
           .from(images)
-          .limit(20);
+          .limit(30);
+        console.log("DB images count:", allImages.length);
         await kv.set("all_images", JSON.stringify(allImages));
         return { images: allImages };
       } else {
@@ -85,7 +89,7 @@ export const getImages = async (
           [...directMatches, ...semanticMatches].map((image) => ({
             ...image.image,
             similarity: image.similarity,
-          })),
+          }))
         );
 
         await kv.set(formattedQuery, JSON.stringify(allMatches));

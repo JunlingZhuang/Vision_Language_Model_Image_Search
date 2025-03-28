@@ -4,7 +4,7 @@
 </a>
 
 <p align="center">
-  An open-source AI semantic image search app template built with Next.js, the Vercel AI SDK, OpenAI, Vercel Postgres, Vercel Blob and Vercel KV.
+  An AI semantic image search app demo for Corgan Assets built with Next.js, the Vercel AI SDK, OpenAI, Vercel Postgres, Vercel Blob and Vercel KV.
 </p>
 
 <p align="center">

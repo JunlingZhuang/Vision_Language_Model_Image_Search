@@ -18,16 +18,25 @@ async function main() {
   for (const file of files) {
     console.clear();
     console.log(
-      `Generating description for ${file} (${files.indexOf(file) + 1}/${files.length})`,
+      `Generating description for ${file} (${files.indexOf(file) + 1}/${
+        files.length
+      })`
     );
     const result = await generateObject({
       model: openai("gpt-4o"),
       schema: z.object({
         image: z.object({
-          title: z.string().describe("an artistic title for the image"),
+          title: z
+            .string()
+            .describe(
+              "an title for the image, mark with 'floorplan' if it is a floorplan, mark with 'photo' if it is a photo. Add necessary details to the title to help with search."
+            ),
           description: z
             .string()
-            .describe("A one sentence description of the image"),
+            // .describe("A one sentence description of the image,"),
+            .describe(
+              "A one sentence description of the image, if it is a photo, including the furniture, vibe, and any other relevant details. If it is a floorplan, describe the layout of the room, including the furniture, vibe, and any other relevant details."
+            ),
         }),
       }),
       maxTokens: 512,

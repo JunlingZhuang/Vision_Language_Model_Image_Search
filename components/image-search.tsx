@@ -20,6 +20,7 @@ export const ImageSearch = ({
     return <NoImagesFound query={query ?? ""} />;
   }
 
+  console.log("images length", images.length);
   return <ImageGrid images={images} />;
 };
 
