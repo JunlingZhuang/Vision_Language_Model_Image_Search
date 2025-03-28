@@ -40,6 +40,7 @@
   },
   "devDependencies": {
     "@types/lodash": "^4.17.13",
+    "@types/next": "^9.0.0",
     "@types/node": "^22.10.2",
     "@types/react": "^19.0.1",
     "@types/react-dom": "^19.0.2",
